@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# validate-skills: check every skills/**/SKILL.md has valid frontmatter.
+#
+# Verifies each skill's frontmatter starts on line 1, closes with a second `---`, and
+# declares non-empty `name` and `description` fields; also checks for duplicate skill
+# names across the repo. skills/deprecated/ is excluded (see
+# .agents/adr/0004-delete-not-archive-deprecated-skills.md — it never holds real
+# skills). Pure bash + awk, no YAML parser, no interpreter beyond what
+# scripts/sync-skills already requires.
+set -eo pipefail
+
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$REPO"
+
+# Print the value of one frontmatter field, or nothing if the field or the
+# frontmatter block itself is missing/malformed. Small state machine: line 1 must be
+# `---` to even be in frontmatter, and a second `---` closes the block early so we
+# never scan the skill's body content by accident.
+frontmatter_field() {
+  local file="$1" field="$2"
+  awk -v field="$field" '
+    NR==1 && $0 != "---" { exit }              # no opening --- on line 1: not frontmatter
+    NR==1 { next }                              # skip the opening --- itself
+    $0 == "---" { exit }                        # closing --- reached: stop scanning
+    $0 ~ "^" field ":" {
+      line = $0
+      sub("^" field ":[ \t]*", "", line)        # strip "field:" and any leading space
+      gsub(/^"|"$/, "", line)                   # unwrap a quoted value, if any
+      print line
+    }
+  ' "$file"
+}
+
+errors=()
+name_records=() # "<name>\t<file>" per skill with a non-empty name, used for the
+                # duplicate check below. A plain indexed array (not an associative
+                # one) on purpose — macOS ships bash 3.2, which has no `declare -A`.
+count=0
+
+while IFS= read -r -d '' file; do
+  count=$((count + 1))
+  name="$(frontmatter_field "$file" name)"
+  description="$(frontmatter_field "$file" description)"
+
+  [ -n "$name" ] || errors+=("$file: missing non-empty field: name")
+  [ -n "$description" ] || errors+=("$file: missing non-empty field: description")
+  [ -n "$name" ] && name_records+=("$name"$'\t'"$file")
+done < <(find skills -name SKILL.md -not -path '*/deprecated/*' -print0 | sort -z)
+
+# Duplicate names: pull just the name column out of name_records, sort it, and
+# `uniq -d` prints only the values that appeared more than once. For each of those,
+# grep the original records back out to name every offending file in one error line.
+if [ ${#name_records[@]} -gt 0 ]; then
+  dupes="$(printf '%s\n' "${name_records[@]}" | cut -f1 | sort | uniq -d)"
+  while IFS= read -r dup; do
+    [ -n "$dup" ] || continue
+    files="$(printf '%s\n' "${name_records[@]}" | awk -F'\t' -v n="$dup" '$1==n {print $2}' | paste -sd, -)"
+    errors+=("duplicate skill name '$dup' used by: $files")
+  done <<< "$dupes"
+fi
+
+if [ ${#errors[@]} -gt 0 ]; then
+  echo "Skill validation failed:" >&2
+  for e in "${errors[@]}"; do
+    echo "- $e" >&2
+  done
+  exit 1
+fi
+
+echo "Validated $count skill(s)."
