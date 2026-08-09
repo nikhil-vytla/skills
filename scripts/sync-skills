@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# sync-skills: mirror every skill in this repo into the local skill directories used
+# by each agent harness:
+#   - ~/.claude/skills — Claude Code (scans one level deep only)
+#   - ~/.agents/skills — Codex and other Agent Skills-compatible harnesses
+#
+# Each entry is a flat symlink by skill name into this repo, discovered via `find`
+# regardless of category nesting depth, so adding a new category needs no changes
+# here. skills/deprecated/ is always excluded. Idempotent; prunes managed links for
+# skills that no longer exist; never touches a real file or a foreign symlink.
+set -euo pipefail
+
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+DESTS=("$HOME/.claude/skills" "$HOME/.agents/skills")
+
+note() { printf '%s\n' "$*"; }
+
+# Collect the repo's skills once, link into every destination.
+names=()
+srcs=()
+while IFS= read -r -d '' skill_md; do
+  src="$(dirname "$skill_md")"
+  names+=("$(basename "$src")")
+  srcs+=("$src")
+done < <(find "$REPO/skills" -name SKILL.md -not -path '*/deprecated/*' -print0)
+
+is_known() {
+  local n="$1" k
+  for k in "${names[@]}"; do
+    [ "$k" = "$n" ] && return 0
+  done
+  return 1
+}
+
+for DEST in "${DESTS[@]}"; do
+  # If $DEST is a symlink that resolves into this repo, the per-skill symlinks below
+  # would get written back into the repo's own skills/ tree. Detect and bail instead
+  # of polluting the working copy.
+  if [ -L "$DEST" ]; then
+    resolved="$(readlink -f "$DEST")"
+    case "$resolved" in
+      "$REPO" | "$REPO"/*)
+        echo "error: $DEST is a symlink into this repo ($resolved)." >&2
+        echo "Remove it (rm \"$DEST\") and re-run; this script will recreate it as a real dir." >&2
+        exit 1
+        ;;
+    esac
+  fi
+
+  mkdir -p "$DEST"
+
+  for i in "${!names[@]}"; do
+    name="${names[$i]}"
+    src="${srcs[$i]}"
+    target="$DEST/$name"
+
+    if [ -L "$target" ] && [ "$(readlink "$target")" = "$src" ]; then
+      continue
+    fi
+
+    if [ -e "$target" ] && [ ! -L "$target" ]; then
+      rm -rf "$target"
+    fi
+
+    ln -sfn "$src" "$target"
+    note "linked $name -> $src ($DEST)"
+  done
+
+  # Prune managed links (pointing into this repo) for skills that no longer exist.
+  for entry in "$DEST"/*; do
+    [ -L "$entry" ] || continue
+    entry_name="$(basename "$entry")"
+    target="$(readlink "$entry")"
+    case "$target" in
+      "$REPO"/*) ;;
+      *) continue ;; # foreign link, leave it alone
+    esac
+    if [ ! -e "$entry" ] || ! is_known "$entry_name"; then
+      rm "$entry"
+      note "pruned $entry_name -> $target ($DEST)"
+    fi
+  done
+done
