@@ -45,6 +45,10 @@ file directly when the task matches.
 - Building or running an eval → `skills/research/playbooks/evals.md`
 - Design question needing a cheap concrete artifact to react to → `prototype` skill
 - Work bigger than one session, needs charting as decision tickets first → `wayfinder` skill
+- Loose idea or decision to stress-test by interview, no repo needed → `grill-me` skill
+  (runs the model-invoked `grilling` primitive)
+- Fuzzy plan in a repo, worth capturing vocabulary and hard decisions as it settles →
+  `grill-with-docs` skill (runs `grilling` plus the model-invoked `domain-modeling`)
 - Cleaning up writing → `unslop` skill (applies by default to any prose this repo produces)
 - Want the last message restated in plain language → `bro` skill
 

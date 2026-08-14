@@ -28,9 +28,13 @@ and `~/.agents/skills/`. Re-run it after adding, renaming, or removing a skill. 
 
 | category | skill | for |
 |---|---|---|
+| engineering | [domain-modeling](skills/engineering/domain-modeling/SKILL.md) | building a project's glossary and ADRs as decisions crystallise |
+| engineering | [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md) | interviewing a plan in a repo while writing CONTEXT.md and ADRs |
 | engineering | [prototype](skills/engineering/prototype/SKILL.md) | throwaway code to answer a design question |
 | engineering | [wayfinder](skills/engineering/wayfinder/SKILL.md) | charting work bigger than one session as decision tickets |
 | productivity | [bro](skills/productivity/bro/SKILL.md) | restating the last message in plain language |
+| productivity | [grill-me](skills/productivity/grill-me/SKILL.md) | interviewing a loose idea until it's decided, no repo needed |
+| productivity | [grilling](skills/productivity/grilling/SKILL.md) | the round-based interview primitive the grill skills run |
 | productivity | [unslop](skills/productivity/unslop/SKILL.md) | cutting AI tells from writing |
 
 ## Playbooks
