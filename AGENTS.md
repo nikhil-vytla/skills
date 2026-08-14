@@ -7,8 +7,8 @@ canonical file — `CLAUDE.md` just points here.
 
 Nikhil's personal agent skills and workflows: `skills/<category>/<name>/SKILL.md`,
 grouped into `engineering/`, `research/`, `productivity/`, and `experimental/`
-(skills still being trialed). Categories are plain organizational folders, not skills
-themselves — there is no category-root `SKILL.md`.
+(WIP skills). Categories are plain organizational folders, not skills themselves —
+there is no category-root `SKILL.md`.
 
 - `docs/guide/` — a short walkthrough of using this repo's skills and playbooks
   together, for humans (start at `docs/guide/README.md`).
