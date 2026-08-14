@@ -5,9 +5,9 @@ improvised from scratch. This guide walks through that in practice.
 
 1. [Setup](01-setup.md). Install and sync.
 2. [Engineering](02-engineering.md). The existing-repo and scaffold-new playbooks, and
-   when to reach for `prototype` or `wayfinder`.
+   the skills to reach for within either.
 3. [Research](03-research.md). The inference-research and evals playbooks.
-4. [Productivity](04-productivity.md). `bro` and `unslop`.
+4. [Productivity](04-productivity.md). The conversation and writing skills.
 
 ## If you only remember one thing
 
