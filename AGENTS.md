@@ -6,8 +6,9 @@ canonical file — `CLAUDE.md` just points here.
 ## What this repo is
 
 Nikhil's personal agent skills and workflows: `skills/<category>/<name>/SKILL.md`,
-grouped into `engineering/`, `research/`, and `productivity/`. Categories are plain
-organizational folders, not skills themselves — there is no category-root `SKILL.md`.
+grouped into `engineering/`, `research/`, `productivity/`, and `experimental/`
+(WIP skills). Categories are plain organizational folders, not skills themselves —
+there is no category-root `SKILL.md`.
 
 - `docs/guide/` — a short walkthrough of using this repo's skills and playbooks
   together, for humans (start at `docs/guide/README.md`).
@@ -51,6 +52,10 @@ file directly when the task matches.
   `grill-with-docs` skill (runs `grilling` plus the model-invoked `domain-modeling`)
 - Cleaning up writing → `unslop` skill (applies by default to any prose this repo produces)
 - Want the last message restated in plain language → `bro` skill
+- Hit a small friction while working (retried tool call, flaky command, misleading
+  error) → `papercuts` skill: log it in the moment with the bundled `papercut` CLI to
+  the repo's `PAPERCUTS.jsonl` (repos opt in via `papercut init`). The whole-session
+  transcript sweep runs only on an explicit `/papercuts`.
 
 If a task doesn't match any playbook or skill above, say so rather than forcing it into
 the closest match — that's the signal a new playbook or skill is needed.

@@ -1,0 +1,108 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# papercut — append-only friction log, one JSONL file per opted-in repo.
+# This script is the only writer of PAPERCUTS.jsonl; `list` relies on that.
+
+usage() {
+  cat <<'EOF'
+papercut — append-only friction log
+
+Usage:
+  papercut init                        create PAPERCUTS.jsonl at the repo root (the opt-in)
+  papercut log [--source sweep] TEXT   append one papercut
+  papercut list                        render the log as markdown
+
+The log lives at $PAPERCUTS_FILE if set, otherwise PAPERCUTS.jsonl at the git
+toplevel. `log` refuses to run until the file exists — a repo opts in via
+`papercut init`, never implicitly.
+EOF
+}
+
+resolve_file() {
+  if [ -n "${PAPERCUTS_FILE:-}" ]; then
+    printf '%s\n' "$PAPERCUTS_FILE"
+    return
+  fi
+  local root
+  if ! root=$(git rev-parse --show-toplevel 2>/dev/null); then
+    echo "papercut: not in a git repo and PAPERCUTS_FILE is not set" >&2
+    exit 2
+  fi
+  printf '%s/PAPERCUTS.jsonl\n' "$root"
+}
+
+# Collapse newlines/tabs to spaces, drop other control chars, escape \ and ".
+# After that, the string is a valid JSON string body.
+json_escape() {
+  printf '%s' "$1" | tr '\n\t' '  ' | tr -d '\000-\037' \
+    | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'
+}
+
+cmd_init() {
+  local file
+  file=$(resolve_file)
+  if [ -f "$file" ]; then
+    echo "papercut: $file already exists"
+  else
+    : > "$file"
+    echo "papercut: created $file"
+  fi
+}
+
+cmd_log() {
+  local source="inline"
+  if [ "${1:-}" = "--source" ]; then
+    if [ "${2:-}" != "inline" ] && [ "${2:-}" != "sweep" ]; then
+      echo "papercut: --source must be 'inline' or 'sweep'" >&2
+      exit 2
+    fi
+    source="$2"
+    shift 2
+  fi
+  if [ "${1:-}" = "--" ]; then
+    shift
+  fi
+  if [ $# -lt 1 ] || [ -z "$*" ]; then
+    echo "papercut: log needs text (what you were doing -> what got in the way)" >&2
+    exit 2
+  fi
+
+  local file
+  file=$(resolve_file)
+  if [ ! -f "$file" ]; then
+    echo "papercut: $file does not exist — this repo hasn't opted in (run 'papercut init')" >&2
+    exit 3
+  fi
+
+  local ts branch text
+  ts=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+  branch=$(json_escape "$(git branch --show-current 2>/dev/null || true)")
+  text=$(json_escape "$*")
+  printf '{"ts":"%s","source":"%s","branch":"%s","text":"%s"}\n' \
+    "$ts" "$source" "$branch" "$text" >> "$file"
+  echo "papercut: logged to $file"
+}
+
+cmd_list() {
+  local file
+  file=$(resolve_file)
+  if [ ! -f "$file" ]; then
+    echo "papercut: $file does not exist — nothing to list" >&2
+    exit 3
+  fi
+  # Rely on the writer's fixed key order; lines this script didn't write pass
+  # through untouched. Unescape \" and \\ in one left-to-right pass.
+  sed -E \
+    -e 's/^\{"ts":"([^"]{10})[^"]*","source":"inline","branch":"[^"]*","text":"(.*)"\}$/- \1: \2/' \
+    -e 's/^\{"ts":"([^"]{10})[^"]*","source":"sweep","branch":"[^"]*","text":"(.*)"\}$/- \1 (sweep): \2/' \
+    "$file" | sed 's/\\\(["\\]\)/\1/g'
+}
+
+case "${1:-}" in
+  init) shift; cmd_init "$@" ;;
+  log)  shift; cmd_log "$@" ;;
+  list) shift; cmd_list "$@" ;;
+  -h|--help|help|"") usage ;;
+  *) echo "papercut: unknown command '$1'" >&2; usage >&2; exit 2 ;;
+esac

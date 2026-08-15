@@ -8,6 +8,7 @@ improvised from scratch. This guide walks through that in practice.
    the skills to reach for within either.
 3. [Research](03-research.md). The inference-research and evals playbooks.
 4. [Productivity](04-productivity.md). The conversation and writing skills.
+5. [Experimental](05-experimental.md). WIP skills.
 
 ## If you only remember one thing
 
