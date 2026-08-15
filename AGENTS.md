@@ -52,6 +52,7 @@ file directly when the task matches.
   `grill-with-docs` skill (runs `grilling` plus the model-invoked `domain-modeling`)
 - Cleaning up writing → `unslop` skill (applies by default to any prose this repo produces)
 - Want the last message restated in plain language → `bro` skill
+- Topic would land better as a diagram, tree, diff, or visual than prose → `show-me` skill
 - Hit a small friction while working (retried tool call, flaky command, misleading
   error) → `papercuts` skill: log it in the moment with the bundled `papercut` CLI to
   the repo's `PAPERCUTS.jsonl` (repos opt in via `papercut init`). The whole-session

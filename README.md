@@ -36,6 +36,7 @@ and `~/.agents/skills/`. Re-run it after adding, renaming, or removing a skill. 
 | productivity | [bro](skills/productivity/bro/SKILL.md) | restating the last message in plain language |
 | productivity | [grill-me](skills/productivity/grill-me/SKILL.md) | interviewing a loose idea until it's decided, no repo needed |
 | productivity | [grilling](skills/productivity/grilling/SKILL.md) | the round-based interview primitive the grill skills run |
+| productivity | [show-me](skills/productivity/show-me/SKILL.md) | explaining the current topic visually |
 | productivity | [unslop](skills/productivity/unslop/SKILL.md) | cutting AI tells from writing |
 
 ## Playbooks

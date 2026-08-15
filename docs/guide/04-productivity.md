@@ -7,6 +7,8 @@
   code, and writes no files.
 - [`grilling`](../reference/productivity/grilling.md) — the interview primitive
   `grill-me` and `grill-with-docs` run; fires on its own when you ask to be grilled.
+- [`show-me`](../reference/productivity/show-me.md) — explain the current topic
+  visually: trees, diffs, Mermaid, or a focused HTML artifact, whichever is smallest.
 - [`unslop`](../reference/productivity/unslop.md) — cut AI tells from any writing.
   Applies by default to prose this repo produces.
 
