@@ -30,8 +30,10 @@ and `~/.agents/skills/`. Re-run it after adding, renaming, or removing a skill. 
 |---|---|---|
 | engineering | [domain-modeling](skills/engineering/domain-modeling/SKILL.md) | building a project's glossary and ADRs as decisions crystallise |
 | engineering | [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md) | interviewing a plan in a repo while writing CONTEXT.md and ADRs |
+| engineering | [pr-descriptions](skills/engineering/pr-descriptions/SKILL.md) | writing high-signal PR descriptions for stacked PR trains |
 | engineering | [prototype](skills/engineering/prototype/SKILL.md) | throwaway code to answer a design question |
 | engineering | [wayfinder](skills/engineering/wayfinder/SKILL.md) | charting work bigger than one session as decision tickets |
+| experimental | [clean-copy](skills/experimental/clean-copy/SKILL.md) | cutting interface copy that shouldn't exist |
 | experimental | [papercuts](skills/experimental/papercuts/SKILL.md) | logging small frictions with a durable record |
 | productivity | [bro](skills/productivity/bro/SKILL.md) | restating the last message in plain language |
 | productivity | [grill-me](skills/productivity/grill-me/SKILL.md) | interviewing a loose idea until it's decided, no repo needed |
