@@ -28,10 +28,17 @@ and `~/.agents/skills/`. Re-run it after adding, renaming, or removing a skill. 
 
 | category | skill | for |
 |---|---|---|
+| engineering | [codebase-design](skills/engineering/codebase-design/SKILL.md) | the deep-module design vocabulary the other design skills build on |
 | engineering | [domain-modeling](skills/engineering/domain-modeling/SKILL.md) | building a project's glossary and ADRs as decisions crystallise |
 | engineering | [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md) | interviewing a plan in a repo while writing CONTEXT.md and ADRs |
+| engineering | [improve-codebase-architecture](skills/engineering/improve-codebase-architecture/SKILL.md) | scanning a codebase for deepening opportunities, then grilling through one |
 | engineering | [pr-descriptions](skills/engineering/pr-descriptions/SKILL.md) | writing high-signal PR descriptions for stacked PR trains |
 | engineering | [prototype](skills/engineering/prototype/SKILL.md) | throwaway code to answer a design question |
+| engineering | [research](skills/engineering/research/SKILL.md) | investigating a question against primary sources |
+| engineering | [setup-skills](skills/engineering/setup-skills/SKILL.md) | configuring a repo's issue tracker and domain docs for the engineering skills |
+| engineering | [to-spec](skills/engineering/to-spec/SKILL.md) | synthesizing the current conversation into a published spec |
+| engineering | [to-tickets](skills/engineering/to-tickets/SKILL.md) | breaking a plan into tracer-bullet tickets with blocking edges |
+| engineering | [triage](skills/engineering/triage/SKILL.md) | moving issues and incoming PRs through triage roles |
 | engineering | [wayfinder](skills/engineering/wayfinder/SKILL.md) | charting work bigger than one session as decision tickets |
 | experimental | [clean-copy](skills/experimental/clean-copy/SKILL.md) | cutting interface copy that shouldn't exist |
 | experimental | [papercuts](skills/experimental/papercuts/SKILL.md) | logging small frictions with a durable record |

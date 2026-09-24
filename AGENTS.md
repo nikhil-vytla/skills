@@ -50,6 +50,16 @@ file directly when the task matches.
   (runs the model-invoked `grilling` primitive)
 - Fuzzy plan in a repo, worth capturing vocabulary and hard decisions as it settles →
   `grill-with-docs` skill (runs `grilling` plus the model-invoked `domain-modeling`)
+- First run in a repo, or the issue tracker/domain-docs config is missing → `setup-skills`
+  skill (run once before the other engineering skills)
+- Maintaining issues and incoming PRs through triage roles → `triage` skill
+- Turning the current conversation into a spec published to the tracker → `to-spec` skill
+- Breaking a spec or plan into tracer-bullet tickets with blocking edges → `to-tickets` skill
+- Surveying a codebase for deepening opportunities, then grilling through one →
+  `improve-codebase-architecture` skill (builds on the model-invoked `codebase-design`)
+- A question needing investigation against primary sources → `research` skill
+- Designing or reviewing a module's interface, or needing deep-module vocabulary →
+  `codebase-design` skill
 - Cleaning up writing → `unslop` skill (applies by default to any prose this repo produces)
 - Want the last message restated in plain language → `bro` skill
 - Topic would land better as a diagram, tree, diff, or visual than prose → `show-me` skill

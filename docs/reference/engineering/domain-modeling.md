@@ -2,26 +2,26 @@
 
 ## What it does
 
-Builds and sharpens a project's domain language while you design: challenges a term
+Builds and sharpens a project's domain language while you design. It challenges a term
 that conflicts with the glossary, forces a precise word where you used a vague one,
 stress-tests relationships with concrete scenarios, and cross-references what you say
 against what the code does. Resolved terms are written into `CONTEXT.md` inline, the
-moment they resolve; decisions are offered as ADRs only when hard to reverse,
-surprising without context, and a real trade-off — all three at once. Formats live in
-the skill's `CONTEXT-FORMAT.md` and `ADR-FORMAT.md`.
+moment they resolve. Decisions are offered as ADRs only when hard to reverse,
+surprising without context, and a real trade-off, and all three gates must hold at once.
+Formats live in the skill's `CONTEXT-FORMAT.md` and `ADR-FORMAT.md`.
 
 ## When to reach for it
 
 When the words are the problem: two people mean different things by the same term, one
 term is doing three jobs, or a hard-to-reverse choice just got made. It's model-invoked
-and mostly runs underneath `grill-with-docs` or `wayfinder`; type `/domain-modeling`
+and mostly runs underneath `grill-with-docs` or `wayfinder`. Type `/domain-modeling`
 when you want the discipline without the surrounding interview. If you only want a term
 looked up, just read `CONTEXT.md`.
 
 ## FAQ
 
 **What belongs in CONTEXT.md?**
-Terms and nothing else — what a thing is, in one or two sentences, with rejected
+Terms and nothing else: what a thing is, in one or two sentences, with rejected
 synonyms under `_Avoid_`. No implementation details, no spec, no scratch notes. A
 bloating `CONTEXT.md` means decisions leaked in; prune it back to a glossary.
 
@@ -40,6 +40,6 @@ record. Most sessions produce zero ADRs, and that's it working.
 
 ## Where it fits
 
-The writing half of `grill-with-docs` (which pairs it with `grilling`) and one of the
+The writing half of `grill-with-docs`, which pairs it with `grilling`, and one of the
 skills `wayfinder` invokes while resolving decision tickets. See the full
 [SKILL.md](../../../skills/engineering/domain-modeling/SKILL.md).
