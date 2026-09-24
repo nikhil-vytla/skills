@@ -3,21 +3,21 @@
 ## What it does
 
 Charts work too big for one agent session as a shared map of decision tickets on an
-issue tracker, then resolves them one at a time until the way forward is clear. Plans
-by default — each ticket resolves a decision, not a slice of a build — and stops once
-nothing is left to decide before someone does the work.
+issue tracker, then resolves them one at a time until the way forward is clear. It plans
+by default, so each ticket resolves a decision rather than a slice of a build, and stops
+once nothing is left to decide before someone does the work.
 
 ## When to reach for it
 
-When a loose idea arrives wrapped in fog: the destination isn't visible yet and the
+When a loose idea arrives wrapped in fog, the destination isn't visible yet, and the
 effort spans more than one session. User-invoked only
-(`disable-model-invocation: true`) — type `/wayfinder` explicitly.
+(`disable-model-invocation: true`), so type `/wayfinder` explicitly.
 
 ## FAQ
 
-**The scope feels small enough to just start building — do I still need a map?**
+**The scope feels small enough to just start building. Do I still need a map?**
 No. If grilling the frontier breadth-first surfaces no fog, the whole journey fits one
-session — stop and ask how to proceed instead of charting one anyway.
+session. Stop and ask how to proceed instead of charting one anyway.
 
 **Can I resolve more than one ticket per session to move faster?**
 Only research tickets. Everything else is one ticket per session by design, since other
