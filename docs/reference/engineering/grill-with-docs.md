@@ -3,7 +3,7 @@
 ## What it does
 
 The same round-based interview as `grill-me`, pointed at a codebase and stateful. As
-terms resolve they land in a `CONTEXT.md` glossary the moment they resolve, and
+terms resolve they land in a `GLOSSARY.md` glossary the moment they resolve, and
 decisions that clear all three ADR gates (hard to reverse, surprising without context,
 a real trade-off) land in `docs/adr/`. Both files are created lazily; nothing is
 scaffolded up front. It runs `grilling` for the interview and `domain-modeling` for the
@@ -20,7 +20,7 @@ no repo at all, use `grill-me`.
 
 ## FAQ
 
-**It ran but no CONTEXT.md or ADRs appeared. Is that broken?**
+**It ran but no GLOSSARY.md or ADRs appeared. Is that broken?**
 Often not. ADRs need all three gates and most sessions produce none, and a session with
 no new vocabulary has nothing to write. But if the interview also arrived as one big
 question dump with no recommendations, the model skipped loading `grilling` or
@@ -32,7 +32,7 @@ conversation onward rather than clearing it and assuming the files captured ever
 
 ## Signals
 
-- **Working:** `CONTEXT.md` changes during the session term by term, reads as pure
+- **Working:** `GLOSSARY.md` changes during the session term by term, reads as pure
   vocabulary, and questions the codebase can answer get answered by reading it, not
   asked of you.
 - **Not working:** the glossary fills with implementation detail and spec-like prose,

@@ -5,7 +5,7 @@
 The interview primitive the other grill skills run. It maps the subject as a design
 tree — every decision branches into the decisions that hang off it — and works the tree
 in rounds. Each round asks the whole frontier: every question whose prerequisites are
-settled, numbered, each with a recommended answer. Facts get looked up (dispatching
+settled, numbered, each with a recommended answer and separated by a horizontal rule. Facts get looked up (dispatching
 sub-agents if needed); decisions are always yours. It stops when the frontier is empty
 and won't act until you confirm the understanding is shared.
 
