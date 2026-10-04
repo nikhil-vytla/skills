@@ -22,7 +22,7 @@ Within either, reach for:
 - [`wayfinder`](../reference/engineering/wayfinder.md) when the task is bigger than one
   session and needs to be charted as decision tickets before any of it gets built.
 - [`grill-with-docs`](../reference/engineering/grill-with-docs.md) when the plan is
-  still fuzzy and worth an interview that writes the vocabulary (`CONTEXT.md`) and
+  still fuzzy and worth an interview that writes the vocabulary (`GLOSSARY.md`) and
   hard decisions (ADRs) into the repo as it goes.
 - [`domain-modeling`](../reference/engineering/domain-modeling.md) fires on its own
   when terminology or ADRs are being changed. It's the writing half of

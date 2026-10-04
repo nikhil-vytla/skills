@@ -8,7 +8,7 @@ trade-offs instead of reading an abstract list. It scopes the scan with YAGNI: r
 commit history points at the hot spots worth deepening, so it looks where change
 actually happens.
 
-It reads `CONTEXT.md` and relevant ADRs first, then spawns a sub-agent to walk the code
+It reads `GLOSSARY.md` and relevant ADRs first, then spawns a sub-agent to walk the code
 and note friction: concepts that require bouncing between small modules, interfaces
 nearly as complex as their implementations, pure functions extracted only for
 testability, and modules leaking across seams. Each candidate gets a before/after

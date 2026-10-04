@@ -28,14 +28,18 @@ and `~/.agents/skills/`. Re-run it after adding, renaming, or removing a skill. 
 
 | category | skill | for |
 |---|---|---|
+| engineering | [code-review](skills/engineering/code-review/SKILL.md) | reviewing a diff against coding standards and the originating spec, in parallel |
 | engineering | [codebase-design](skills/engineering/codebase-design/SKILL.md) | the deep-module design vocabulary the other design skills build on |
 | engineering | [domain-modeling](skills/engineering/domain-modeling/SKILL.md) | building a project's glossary and ADRs as decisions crystallise |
-| engineering | [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md) | interviewing a plan in a repo while writing CONTEXT.md and ADRs |
+| engineering | [grill-with-docs](skills/engineering/grill-with-docs/SKILL.md) | interviewing a plan in a repo while writing GLOSSARY.md and ADRs |
+| engineering | [implement-spec](skills/engineering/implement-spec/SKILL.md) | implementing a whole spec across parallel worktrees on one integration branch |
 | engineering | [improve-codebase-architecture](skills/engineering/improve-codebase-architecture/SKILL.md) | scanning a codebase for deepening opportunities, then grilling through one |
 | engineering | [pr-descriptions](skills/engineering/pr-descriptions/SKILL.md) | writing high-signal PR descriptions for stacked PR trains |
 | engineering | [prototype](skills/engineering/prototype/SKILL.md) | throwaway code to answer a design question |
 | engineering | [research](skills/engineering/research/SKILL.md) | investigating a question against primary sources |
+| engineering | [retro](skills/engineering/retro/SKILL.md) | retrospecting on a session to improve the agent's environment |
 | engineering | [setup-skills](skills/engineering/setup-skills/SKILL.md) | configuring a repo's issue tracker and domain docs for the engineering skills |
+| engineering | [tdd](skills/engineering/tdd/SKILL.md) | test-first development: good tests, the red-green loop |
 | engineering | [to-spec](skills/engineering/to-spec/SKILL.md) | synthesizing the current conversation into a published spec |
 | engineering | [to-tickets](skills/engineering/to-tickets/SKILL.md) | breaking a plan into tracer-bullet tickets with blocking edges |
 | engineering | [triage](skills/engineering/triage/SKILL.md) | moving issues and incoming PRs through triage roles |
@@ -47,6 +51,7 @@ and `~/.agents/skills/`. Re-run it after adding, renaming, or removing a skill. 
 | productivity | [grilling](skills/productivity/grilling/SKILL.md) | the round-based interview primitive the grill skills run |
 | productivity | [show-me](skills/productivity/show-me/SKILL.md) | explaining the current topic visually |
 | productivity | [unslop](skills/productivity/unslop/SKILL.md) | cutting AI tells from writing |
+| productivity | [writing-for-agents](skills/productivity/writing-for-agents/SKILL.md) | writing skills and steering files agents follow |
 
 ## Playbooks
 
